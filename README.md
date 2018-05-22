@@ -2,7 +2,7 @@ Showoff
 =======
 
 
-[Showoff](https://github.com/puppetlabs/showoff) is presentation software for developer advocates. This is an example presentation using the IBM Code branding. Use this example to make your own IBM Code presentations.
+[Showoff](https://github.com/puppetlabs/showoff) is presentation software for developer advocates. This is an example presentation using the IBM Code branding. Use this example to make your own IBM Code presentations. See a [live example](https://blog.eggshell.me/rotisserie-talk).
 
 Showoff runs as a server on your computer, then you present the slides from a web browser at [http://localhost:9090](http://localhost:9090). Attendees (if you allow them) can access your slides directly from the server on your laptop. You can also push your slides to github pages so everyone has access to them immediately.
 
