@@ -21,6 +21,7 @@ mv ibm-showoff serverless-tutorial
 git remote rm origin # this removes tracking of the template repo
 # Make a new repository
 git remote add https://github.com/ibm/serverless-tutorial
+git push -u origin master 
 vim showoff.json # select which directories you want in the presentation, in what order
 vim introduction/00_section.md  # Edit title slide
 vim introduction/01_section.md # Edit rest of presentation
