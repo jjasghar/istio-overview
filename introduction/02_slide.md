@@ -1,4 +1,4 @@
-!SLIDE[bg=_images/backgrounds/black_bg.png]
+!SLIDE[bg=_images/backgrounds/black_bg_cloud.png]
 
 .blockwhite This is your last chance. After this, there is no turning back. You take the blue pill - the story ends, you wake up in your bed and believe whatever you want to believe.
 
