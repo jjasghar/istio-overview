@@ -1,14 +1,23 @@
 {
-  "name": "My Preso",
+  "name": "Istio Overview",
   "sections": [
     {
       "section": "introduction"
     },
     {
-      "section": "hello"
+      "section": "bookinfo"
     },
     {
-      "section": "world"
+      "section": "intelligent_routing"
+    },
+    {
+      "section": "service_graph"
+    },
+    {
+      "section": "distributed_tracing"
+    },
+    {
+      "section": "fault_injection"
     },
     {
       "section": "conclusion"

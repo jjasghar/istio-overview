@@ -1,3 +1,3 @@
 <!SLIDE center subsection>
-# Section Header
 
+# Distributed Tracing

@@ -1,9 +1,5 @@
-!SLIDE[bg=_images/backgrounds/black_bg.png]
-# IBM Code Presentation
-.blockwhite Introduction to Kubernetes and Istio
+!SLIDE[bg=_images/backgrounds/black_bg_cloud.png]
 
-.blockteal Spencer Krum
+.blockwhite Istio Overview
 
-
-![This is a really fancy image](../_images/ibm_code_big.png)
-
+.blockteal JJ Asghar
