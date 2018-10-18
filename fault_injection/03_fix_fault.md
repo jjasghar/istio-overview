@@ -14,11 +14,13 @@ Ok, good that's looking better
 
 ## Set traffic to 50/50
 
-    @@@ Console
-        kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-50-v3.yaml
+    @@@ bash
+        kubectl apply -f \
+          samples/bookinfo/networking/virtual-service-reviews-50-v3.yaml
 
 ## Send all the traffic to v3
 
-    @@@ Console
-        kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
+    @@@ bash
+        kubectl apply -f \
+         samples/bookinfo/networking/virtual-service-reviews-v3.yaml
         kubectl get virtualservice reviews -o yaml

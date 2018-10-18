@@ -28,13 +28,19 @@ DON'T FORGET TO LOG OUT HERE
 
 ## Create the Delay
 
-    @@@ Console
-        kubectl apply -f samples/bookinfo/networking/virtual-service-all-v1.yaml
-        kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml
-        kubectl apply -f samples/bookinfo/networking/virtual-service-ratings-test-delay.yaml
+    @@@ bash
+        kubectl apply -f \
+          samples/bookinfo/networking/virtual-service-all-v1.yaml
+        kubectl apply -f \
+          samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml
+        kubectl apply -f \
+          samples/bookinfo/networking/virtual-service-ratings-test-delay.yaml
 
 ## Start up jaeger
 
-    @@@ Console
-        kubectl port-forward -n istio-system $(kubectl get pod -n istio-system -l app=jaeger -o jsonpath='{.items[0].metadata.name}') 16686:16686
+    @@@ bash
+        kubectl port-forward -n istio-system \
+          $(kubectl get pod -n istio-system -l \
+          app=jaeger -o jsonpath='{.items[0].metadata.name}') \
+          16686:16686
         firefox http://localhost:1668

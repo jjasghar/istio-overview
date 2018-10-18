@@ -16,7 +16,8 @@ kubectl get destinationrules -o yaml
 
 # All traffic to v1
 
-    @@@ Console
-        kubectl apply -f samples/bookinfo/networking/virtual-service-all-v1.yaml
+    @@@ bash
+        kubectl apply -f \
+          samples/bookinfo/networking/virtual-service-all-v1.yaml
         kubectl get virtualservices -o yaml
         kubectl get destinationrules -o yaml

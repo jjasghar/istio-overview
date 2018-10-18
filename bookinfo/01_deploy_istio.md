@@ -16,7 +16,7 @@ kubectl get pods -n istio-system
 
 # Deploy Istio
 
-    @@@ Console
+    @@@ bash
         kubectl apply -f https://git.io/fxlAR
         kubectl apply -f install/kubernetes/istio-demo.yaml
 

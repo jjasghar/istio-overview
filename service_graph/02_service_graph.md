@@ -16,6 +16,9 @@ firefox http://localhost:8088/force/forcegraph.html
 
 # Service Graph
 
-    @@@ Console
+    @@@ bash
         kubectl -n istio-system get svc servicegraph
-        kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=servicegraph -o jsonpath='{.items[0].metadata.name}') 8088:8088
+        kubectl -n istio-system port-forward \
+          $(kubectl -n istio-system get pod -l \
+          app=servicegraph -o jsonpath='{.items[0].metadata.name}') \
+          8088:8088

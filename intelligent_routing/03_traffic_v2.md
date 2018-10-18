@@ -10,5 +10,6 @@ have the following
 
 # Some traffic to v2
 
-    @@@ Console
-        kubctl apply -f samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml
+    @@@ bash
+        kubctl apply -f \
+          samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml

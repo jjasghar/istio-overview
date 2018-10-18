@@ -19,6 +19,8 @@ firefox $GATEWAY_URL/productpage
 
 # Deploy Bookinfo app
 
-    @@@ Console
-         kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
-         kubectl apply -f samples/bookinfo/networking/destination-rule-all.yaml
+    @@@ bash
+         kubectl apply -f \
+           samples/bookinfo/networking/bookinfo-gateway.yaml
+         kubectl apply -f \
+           samples/bookinfo/networking/destination-rule-all.yaml

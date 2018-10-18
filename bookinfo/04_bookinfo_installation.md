@@ -14,5 +14,7 @@ As you con see here we now have services and pods running bookinfo. including ou
 
 # Deploy Bookinfo app
 
-    @@@ Console
-        kubectl apply -f <(istioctl kube-inject -f samples/bookinfo/platform/kube/bookinfo.yaml)
+    @@@ bash
+        kubectl apply -f <(istioctl \
+          kube-inject -f \
+          samples/bookinfo/platform/kube/bookinfo.yaml)
