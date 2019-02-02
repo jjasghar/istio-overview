@@ -17,9 +17,12 @@ kubectl get pods -n istio-system
 # Deploy Istio
 
     @@@ bash
-        kubectl apply -f https://git.io/fxlAR
-        kubectl apply -f install/kubernetes/istio-demo.yaml
-
+        curl -L https://git.io/getLatestIstio | sh -
+        cd istio-1.0.5
+        export PATH=$PWD/bin:$PATH
+        kubectl apply -f install/kubernetes/helm/helm-service-account.yaml
+        helm init --service-account tiller
+        helm install install/kubernetes/helm/istio --name istio --namespace istio-system
 
 # Note: Istio installation
 
