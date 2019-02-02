@@ -23,6 +23,8 @@ kubectl get pods -n istio-system
         kubectl apply -f install/kubernetes/helm/helm-service-account.yaml
         helm init --service-account tiller
         helm install install/kubernetes/helm/istio --name istio --namespace istio-system
+        kubectl create -f install/kubernetes/istio-demo.yaml
+
 
 # Note: Istio installation
 

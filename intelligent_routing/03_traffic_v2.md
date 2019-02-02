@@ -11,5 +11,5 @@ have the following
 # Some traffic to v2
 
     @@@ bash
-        kubctl apply -f \
+        kubectl apply -f \
           samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml
