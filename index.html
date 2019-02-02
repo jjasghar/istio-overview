@@ -466,7 +466,8 @@ And I hope to show a few off to you today.
     export PATH=$PWD/bin:$PATH
     kubectl apply -f install/kubernetes/helm/helm-service-account.yaml
     helm init --service-account tiller
-    helm install install/kubernetes/helm/istio --name istio --namespace istio-system</code></pre>
+    helm install install/kubernetes/helm/istio --name istio --namespace istio-system
+    kubectl create -f install/kubernetes/istio-demo.yaml</code></pre>
 
 <h1>Note: Istio installation</h1>
 
@@ -626,7 +627,7 @@ kubectl get destinationrules -o yaml
 
 <h1>Some traffic to v2</h1>
 
-<pre class="highlight"><code class="language-bash">    kubctl apply -f \
+<pre class="highlight"><code class="language-bash">    kubectl apply -f \
       samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml</code></pre>
 </div>
 <div class="notes-section notes">
