@@ -461,8 +461,12 @@ And I hope to show a few off to you today.
 
 <h1>Deploy Istio</h1>
 
-<pre class="highlight"><code class="language-console">    kubectl apply -f https://git.io/fxlAR
-    kubectl apply -f install/kubernetes/istio-demo.yaml</code></pre>
+<pre class="highlight"><code class="language-bash">    curl -L https://git.io/getLatestIstio | sh -
+    cd istio-1.0.5
+    export PATH=$PWD/bin:$PATH
+    kubectl apply -f install/kubernetes/helm/helm-service-account.yaml
+    helm init --service-account tiller
+    helm install install/kubernetes/helm/istio --name istio --namespace istio-system</code></pre>
 
 <h1>Note: Istio installation</h1>
 
@@ -536,7 +540,9 @@ one without stars v1, one with black stars, v2 and finally one with red stars v3
 
 <h1>Deploy Bookinfo app</h1>
 
-<pre class="highlight"><code class="language-console">    kubectl apply -f &lt;(istioctl kube-inject -f samples/bookinfo/platform/kube/bookinfo.yaml)</code></pre>
+<pre class="highlight"><code class="language-bash">    kubectl apply -f &lt;(istioctl \
+      kube-inject -f \
+      samples/bookinfo/platform/kube/bookinfo.yaml)</code></pre>
 </div>
 <div class="notes-section notes">
 <p>
@@ -557,8 +563,10 @@ The following command is what i'm going to run to install bookinfo.</p>
 
 <h1>Deploy Bookinfo app</h1>
 
-<pre class="highlight"><code class="language-console">     kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
-     kubectl apply -f samples/bookinfo/networking/destination-rule-all.yaml</code></pre>
+<pre class="highlight"><code class="language-bash">     kubectl apply -f \
+       samples/bookinfo/networking/bookinfo-gateway.yaml
+     kubectl apply -f \
+       samples/bookinfo/networking/destination-rule-all.yaml</code></pre>
 </div>
 <div class="notes-section notes">
 <p>
@@ -591,7 +599,8 @@ export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT</p>
 
 <h1>All traffic to v1</h1>
 
-<pre class="highlight"><code class="language-console">    kubectl apply -f samples/bookinfo/networking/virtual-service-all-v1.yaml
+<pre class="highlight"><code class="language-bash">    kubectl apply -f \
+      samples/bookinfo/networking/virtual-service-all-v1.yaml
     kubectl get virtualservices -o yaml
     kubectl get destinationrules -o yaml</code></pre>
 </div>
@@ -617,7 +626,8 @@ kubectl get destinationrules -o yaml
 
 <h1>Some traffic to v2</h1>
 
-<pre class="highlight"><code class="language-console">    kubctl apply -f samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml</code></pre>
+<pre class="highlight"><code class="language-bash">    kubctl apply -f \
+      samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml</code></pre>
 </div>
 <div class="notes-section notes">
 <p>
@@ -663,8 +673,11 @@ As you can see here, the yaml section is very straight forward.</p>
 
 <h1>Service Graph</h1>
 
-<pre class="highlight"><code class="language-console">    kubectl -n istio-system get svc servicegraph
-    kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=servicegraph -o jsonpath='{.items[0].metadata.name}') 8088:8088</code></pre>
+<pre class="highlight"><code class="language-bash">    kubectl -n istio-system get svc servicegraph
+    kubectl -n istio-system port-forward \
+      $(kubectl -n istio-system get pod -l \
+      app=servicegraph -o jsonpath='{.items[0].metadata.name}') \
+      8088:8088</code></pre>
 </div>
 <div class="notes-section notes">
 <p>
@@ -713,7 +726,11 @@ There are two links you can try</p>
 
 <h1>Distributed Tracing</h1>
 
-<pre class="highlight"><code class="language-console">    kubectl port-forward -n istio-system $(kubectl get pod -n istio-system -l app=jaeger -o jsonpath='{.items[0].metadata.name}') 16686:16686</code></pre>
+<pre class="highlight"><code class="language-bash">    kubectl port-forward -n istio-system \
+      $(kubectl get pod -n istio-system -l \
+      app=jaeger -o \
+      jsonpath='{.items[0].metadata.name}') \
+      16686:16686</code></pre>
 </div>
 <div class="notes-section notes">
 <p>
@@ -758,13 +775,19 @@ As you can see there is a tone of information in Jaeger.</p>
 
 <h2>Create the Delay</h2>
 
-<pre class="highlight"><code class="language-console">    kubectl apply -f samples/bookinfo/networking/virtual-service-all-v1.yaml
-    kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml
-    kubectl apply -f samples/bookinfo/networking/virtual-service-ratings-test-delay.yaml</code></pre>
+<pre class="highlight"><code class="language-bash">    kubectl apply -f \
+      samples/bookinfo/networking/virtual-service-all-v1.yaml
+    kubectl apply -f \
+      samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml
+    kubectl apply -f \
+      samples/bookinfo/networking/virtual-service-ratings-test-delay.yaml</code></pre>
 
 <h2>Start up jaeger</h2>
 
-<pre class="highlight"><code class="language-console">    kubectl port-forward -n istio-system $(kubectl get pod -n istio-system -l app=jaeger -o jsonpath='{.items[0].metadata.name}') 16686:16686
+<pre class="highlight"><code class="language-bash">    kubectl port-forward -n istio-system \
+      $(kubectl get pod -n istio-system -l \
+      app=jaeger -o jsonpath='{.items[0].metadata.name}') \
+      16686:16686
     firefox http://localhost:1668</code></pre>
 </div>
 <div class="notes-section notes">
@@ -801,11 +824,13 @@ such anomalies without impacting end users.</p>
 
 <h2>Set traffic to 50/50</h2>
 
-<pre class="highlight"><code class="language-console">    kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-50-v3.yaml</code></pre>
+<pre class="highlight"><code class="language-bash">    kubectl apply -f \
+      samples/bookinfo/networking/virtual-service-reviews-50-v3.yaml</code></pre>
 
 <h2>Send all the traffic to v3</h2>
 
-<pre class="highlight"><code class="language-console">    kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-v3.yaml
+<pre class="highlight"><code class="language-bash">    kubectl apply -f \
+     samples/bookinfo/networking/virtual-service-reviews-v3.yaml
     kubectl get virtualservice reviews -o yaml</code></pre>
 </div>
 <div class="notes-section notes">
